@@ -12,7 +12,25 @@ import CatCard from "./CatCard";
 // don't worry about it too much
 export class DisconnectedSingleCat extends React.Component {
   render() {
-    return <div className="single-cat"></div>;
+    const cat = this.props;
+    // console.log(cat);
+    return (
+      <div className="single-cat">
+        <h2>{cat.name}</h2>
+        <img src={cat.imageUrl}></img>
+        <ul className="toys">
+          {cat.toyRatings.map(toy => (
+            <li key={toy.id}>{toy.name}</li>
+          ))}
+        </ul>
+        <div className="friends">
+          <h3>Friends</h3>
+          {cat.friends.map(friend => (
+            <CatCard key={friend.id} {...friend} />
+          ))}
+        </div>
+      </div>
+    );
   }
 }
 
